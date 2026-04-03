@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import type { Variants } from 'framer-motion';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export default function Navigation({ 
   menuOpen, 
