@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Lenis from 'lenis';
 import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
@@ -17,24 +17,33 @@ import { motion } from 'framer-motion';
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showFullMenu, setShowFullMenu] = useState(false);
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    const lenis = new Lenis({
+    lenisRef.current = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
     function raf(time: number) {
-      lenis.raf(time);
+      lenisRef.current?.raf(time);
       requestAnimationFrame(raf);
     }
 
     requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy();
+      lenisRef.current?.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    if (menuOpen) {
+      lenisRef.current?.stop();
+    } else {
+      lenisRef.current?.start();
+    }
+  }, [menuOpen]);
 
   if (showFullMenu) {
     return <MenuPage onClose={() => setShowFullMenu(false)} />;

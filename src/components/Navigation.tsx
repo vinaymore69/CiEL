@@ -48,7 +48,7 @@ export default function Navigation({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between">
           <div className="flex items-center">
-            <img src="/image.png" alt="CiEL" className="h-17 sm:h-12 w-auto" />
+            <img src="/image.png" alt="CiEL" className="h-10 sm:h-12 w-auto" />
           </div>
 
           <div className="flex items-center gap-3">
